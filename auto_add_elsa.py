@@ -1,3 +1,4 @@
+from distutils.command.clean import clean
 from ppadb.client import Client
 import cv2
 import matplotlib.pyplot as plt
@@ -27,22 +28,25 @@ def remove_duplicates_line(seq):
 
 def clean_script(origin_list):
     # print(origin_list)
-    return "".join(origin_list).replace(". ", ".").replace("“", "").replace("”", "").replace('\n', '').replace(":", ".").replace("?", ".").replace("’","'")
+    return "".join(origin_list).replace("“", "").replace("”", "").replace(":", ".").replace(". ", ".").replace("?", ".").replace("’","'").replace("\n\n","\n").replace("\n ","\n")
 
 
 def join_short_sentence(origin_list):
+    print(origin_list)
     origin_list = origin_list[::-1]
     idx = 0
     length_list = len(origin_list)
     join_script = ""
     while idx < length_list:
-        if idx < length_list - 2 and len(origin_list[idx]) + len(origin_list[idx + 1]) + len(origin_list[idx + 2]) <= ELSA_MAX_CHARACTER:
-            join_script += origin_list[idx] + ". " + \
-                origin_list[idx + 1] + ". " + origin_list[idx + 2] + "\n"
+
+        if(len(origin_list[idx].split(" ")) <= 3): idx += 1
+        elif idx < length_list - 2 and len(origin_list[idx]) + len(origin_list[idx + 1]) + len(origin_list[idx + 2]) <= ELSA_MAX_CHARACTER:
+            join_script += origin_list[idx+2] + ". " + \
+                origin_list[idx + 1] + ". " + origin_list[idx] + "\n"
             idx += 3
         elif idx < length_list - 1 and len(origin_list[idx]) + len(origin_list[idx + 1]) <= ELSA_MAX_CHARACTER:
-            join_script += origin_list[idx] + \
-                ". " + origin_list[idx + 1] + "\n"
+            join_script += origin_list[idx+1] + \
+                ". " + origin_list[idx] + "\n"
             idx += 2
         else:
             # if(len(origin_list[idx]) > ELSA_MAX_CHARACTER):
@@ -130,7 +134,12 @@ device = devices[0]
 with open('listword.txt', 'r') as f:
     unique_lines = remove_duplicates_line(f.readlines())
     clean_script = clean_script(unique_lines)
-    splitted_script = clean_script.split(".")
+    print(clean_script)
+    if "." in clean_script:
+        splitted_script = clean_script.split(".")
+    else:
+        splitted_script = clean_script.split("\n")
+
     splitted_script = join_short_sentence(splitted_script)
 
 with open("clean_list_word.txt", 'w') as f:
@@ -140,15 +149,17 @@ with open("clean_list_word.txt", 'w') as f:
 x_add_phrase,y_add_phrase,x_search_bar,y_search_bar,x_plus_icon,y_plus_icon = get_click_postition()
 
 for w in splitted_script.split("\n"):
+
+    if len(w.split(" ")) <= 3: continue
     device.shell(f'input tap {x_add_phrase} {y_add_phrase}')
     device.shell(f'input tap {x_search_bar} {y_search_bar}')
-    print(w+"endl")
+    # print(w+"endl")   
     device.shell(f'input text "{w}"')
     device.shell('input keyevent 66')
 
     while(is_showing_dialog()):
-        sleep(0.3)
+        sleep(0.1)
     # x_plus_icon,y_plus_icon = get_plus_icon_position()
     device.shell(f'input tap {x_plus_icon} {y_plus_icon}')
     while(is_showing_dialog()):
-        sleep(0.3)
+        sleep(0.1)
