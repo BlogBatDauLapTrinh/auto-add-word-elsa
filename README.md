@@ -1,7 +1,7 @@
-# AUTO ADD TRANSCRIPTS TO ELSA SPEAK FOR PRACTISE
+# AUTO ADD TRANSCRIPTS TO ELSA SPEAK
 ## THE PROBLEM AND SOLUTION
 
-|![ELSA](elasa.png)|
+|![ELSA](screenshot/elasa.png)|
 |:----------------:|
 |ELSAE SPEAK is one of the best AI assistants for improving your pronunciation.|
 
@@ -35,7 +35,7 @@ And I am here today to give you a solution, super fast solution. It is quite eas
 
 **Step1:** *Open your phone to this screen*
 
-![You study set](Screenshot_20220118-202740.jpg)
+![You study set](screenshot/Screenshot_20220118-202740.jpg)
 
 **Step2:** Copy and paste your script to `transcript/transcript.txt`
 
@@ -46,7 +46,7 @@ And I am here today to give you a solution, super fast solution. It is quite eas
 
 **Step1:** *Open your phone to this screen*
 
-![You study set](Screenshot_20220117-203819.jpg)
+![You study set](screenshot/Screenshot_20220117-203819.jpg)
 
 **Step2:** Copy and paste your script to `set_word/origin_word_list.txt`
 
@@ -56,4 +56,4 @@ And I am here today to give you a solution, super fast solution. It is quite eas
 ## JOIN MY COMMUNITY
 [![CLick here to join my community](https://cdn.tgdd.vn/GameApp/3/225582/Screentshots/elsa-speak-hoc-tieng-anh-luyen-noi-chuan-nhu-nguoi-ban-225582-logo-05-07-2020.png)](https://share.elsanow.io/0hGLKBUqTmb?~channel=messenger)
 Currently, I have created a community in ELSA. In this one, I had created a list of 5000 Oxford words and it was split into 100 sets, which means there are about 50 words per set.
-Soon, I will continuously update new sets relate to speech and IELTS topics and some small sets that are related to famous songs. For instance: girls like you, that girl, at my worst
+Soon, I will continuously update new sets relate to speech and IELTS topics and some small sets that are related to famous songs. For instance: girls like you, that girl, at my worst, etc
