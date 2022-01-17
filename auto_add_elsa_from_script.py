@@ -20,44 +20,6 @@ def is_showing_dialog():
     return sum_all_pixel / number_of_pixel < SHOWING_DIALOG
 
 
-def remove_duplicates_line(seq):
-    seen = set()
-    seen_add = seen.add
-    return [x for x in seq if not (x in seen or seen_add(x)) and x]
-
-
-def clean_script(origin_list):
-    # print(origin_list)
-    return "".join(origin_list).replace("“", "").replace("”", "").replace(":", ".").replace(". ", ".").replace("?", ".").replace("’","'").replace("\n\n","\n").replace("\n ","\n")
-
-
-def join_short_sentence(origin_list):
-    print(origin_list)
-    origin_list = origin_list[::-1]
-    idx = 0
-    length_list = len(origin_list)
-    join_script = ""
-    while idx < length_list:
-
-        if(len(origin_list[idx].split(" ")) <= 3): idx += 1
-        elif idx < length_list - 2 and len(origin_list[idx]) + len(origin_list[idx + 1]) + len(origin_list[idx + 2]) <= ELSA_MAX_CHARACTER:
-            join_script += origin_list[idx+2] + ". " + \
-                origin_list[idx + 1] + ". " + origin_list[idx] + "\n"
-            idx += 3
-        elif idx < length_list - 1 and len(origin_list[idx]) + len(origin_list[idx + 1]) <= ELSA_MAX_CHARACTER:
-            join_script += origin_list[idx+1] + \
-                ". " + origin_list[idx] + "\n"
-            idx += 2
-        else:
-            # if(len(origin_list[idx]) > ELSA_MAX_CHARACTER):
-            #     print(origin_list[idx])
-            #     splitted_long_setence = origin_list[idx].split(",",0)
-            #     for sub_sentence in splitted_long_setence:
-            #         join_script += sub_sentence + "\n"
-            join_script += origin_list[idx] + "\n"
-            idx += 1
-    return join_script
-
 
 def take_screenshot():
     image = device.screencap()
@@ -124,6 +86,38 @@ def get_click_postition():
 
     return x_add_phrase,y_add_phrase,x_search_bar,y_search_bar,x_plus_icon,y_plus_icon
 
+
+def remove_duplicates_line(seq):
+    seen = set()
+    seen_add = seen.add
+    return [x for x in seq if not (x in seen or seen_add(x)) and x]
+
+
+def clean_script(origin_list):
+    return "".join(origin_list).replace("“", "").replace("”", "").replace(":", ".").replace(". ", ".").replace("?", ".").replace("’","'").replace("\n\n","\n").replace("\n ","\n")
+
+
+def join_short_sentence(origin_list):
+    origin_list = origin_list[::-1]
+    idx = 0
+    length_list = len(origin_list)
+    join_script = ""
+    while idx < length_list:
+
+        if(len(origin_list[idx].split(" ")) <= 3): idx += 1
+        elif idx < length_list - 2 and len(origin_list[idx]) + len(origin_list[idx + 1]) + len(origin_list[idx + 2]) <= ELSA_MAX_CHARACTER:
+            join_script += origin_list[idx+2] + ". " + \
+                origin_list[idx + 1] + ". " + origin_list[idx] + "\n"
+            idx += 3
+        elif idx < length_list - 1 and len(origin_list[idx]) + len(origin_list[idx + 1]) <= ELSA_MAX_CHARACTER:
+            join_script += origin_list[idx+1] + \
+                ". " + origin_list[idx] + "\n"
+            idx += 2
+        else:
+            join_script += origin_list[idx] + "\n"
+            idx += 1
+    return join_script
+
 adb = Client()
 devices = adb.devices()
 if(len(devices) == 0):
@@ -153,6 +147,7 @@ for w in splitted_script.split("\n"):
     if len(w.split(" ")) <= 3: continue
     device.shell(f'input tap {x_add_phrase} {y_add_phrase}')
     device.shell(f'input tap {x_search_bar} {y_search_bar}')
+    sleep(0.1)
     # print(w+"endl")   
     device.shell(f'input text "{w}"')
     device.shell('input keyevent 66')
