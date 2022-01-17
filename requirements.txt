@@ -1,0 +1,3 @@
+pure-python-adb
+opencv-python
+numpy
