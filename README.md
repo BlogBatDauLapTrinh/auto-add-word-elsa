@@ -1,4 +1,5 @@
 # AUTO ADD TRANSCRIPTS TO ELSA SPEAK
+![Đọc bài viết tiếng việt tại đây](https://batdaulaptrinh.com/su-dung-tinh-nang-elsa-pro-free/)
 ## THE PROBLEM AND SOLUTION
 
 |![ELSA](screenshot/elasa.png)|
