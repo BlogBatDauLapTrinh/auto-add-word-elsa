@@ -50,14 +50,15 @@ def split_set_word():
                 except:
                     pass
         idx += 1
-
-START_INDEX = 20
-WORD_PER_SET = 140
+#! 1000 Common phrase index set 12
+START_INDEX = 26
+WORD_PER_SET = 20
+BASE_SET_NAME = "600 TOEIC WORDS PART"  
 SHOWING_DIALOG = 210
 ELSA_MAX_CHARACTER = 128
 WATTING_TIME = 0.1
 LIST_ICON_NAME = 'create_study_set', 'study_set_name', 'category', 'ok', 'add_phrases', 'search_bar', 'plus', 'finish', 'additionally_add_phrases'
-BASE_SET_NAME = "2000 OXFORD WORDS - EXAMPLE"    
+  
 
 def is_showing_dialog():
     # sleep(0.03)
@@ -102,6 +103,14 @@ def create_empty_set(set_name):
     while is_showing_dialog():
         sleep(2*WATTING_TIME)
     
+def remove_old_set_word():
+    full_files_name = glob.glob("set_word/*")
+
+    for file_name in full_files_name:
+        if "origin_word_list.txt" not in file_name:
+            os.system(f'rm {file_name}')
+        
+
 
 adb = Client()
 devices = adb.devices()
@@ -112,7 +121,10 @@ device = devices[0]
 with open("set_word/origin_word_list.txt", 'r') as f:
     list_word = f.readlines()
 number_of_set = math.ceil(len(list_word)/WORD_PER_SET)
+remove_old_set_word()
 split_set_word()
+
+
 for i in range(START_INDEX):
     os.system(f'rm set_word/set_word_number_{i+1}')
     
@@ -129,7 +141,9 @@ for x in range(START_INDEX,number_of_set):
         device.shell(f'input tap {x_additionally_add_phrases} {y_additionally_add_phrases}')
         device.shell(f'input tap {x_search_bar} {y_search_bar}')
         print(idx,len(list_word))
-        device.shell(f'input text "{list_word[idx]}"')
+        phrase = str(list_word[idx])
+        print(phrase)
+        device.shell(f'input text "{phrase}"')
         device.shell('input keyevent 66')
         while(is_showing_dialog()):
             sleep(2*WATTING_TIME)
