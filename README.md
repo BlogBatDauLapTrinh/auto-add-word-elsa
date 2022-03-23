@@ -56,5 +56,5 @@ And I am here today to give you a solution, super fast solution. It is quite eas
 
 ## JOIN MY COMMUNITY
 [![CLick here to join my community](https://cdn.tgdd.vn/GameApp/3/225582/Screentshots/elsa-speak-hoc-tieng-anh-luyen-noi-chuan-nhu-nguoi-ban-225582-logo-05-07-2020.png)](https://share.elsanow.io/0hGLKBUqTmb?~channel=messenger)
-Currently, I have created a community in ELSA. In this one, I had created a list of 5000 Oxford words and it was split into 100 sets, which means there are about 50 words per set.
-Soon, I will continuously update new sets relate to speech and IELTS topics and some small sets that are related to famous songs. For instance: girls like you, that girl, at my worst, etc
+
+Update later
