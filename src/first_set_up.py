@@ -1,7 +1,8 @@
 from time import sleep
 import helper_class.json_file_helper as json_file_helper
-from src.core_class.icon_click_handler import IconClickHandler
+from core_class.icon_click_handler import IconClickHandler
 from helper_class.adb_helper import ADBHelper
+import os 
 
 LIST_ICON_NAMES = 'plus_button_for_adding_study_set', 'study_set_name_input', 'category_dropdown', 'ok_option', 'blue_add_phrases_button', 'search_bar_input', 'plus_button', 'finish_text', 'central_add_phrases_button'
 
@@ -26,4 +27,5 @@ def locate_all_icon_positions():
 
     json_file_helper.dump_position_icons_to_file(position_dict)
 
-locate_all_icon_positions()
+os.system("touch input_text/single_script.txt")
+# locate_all_icon_positions()

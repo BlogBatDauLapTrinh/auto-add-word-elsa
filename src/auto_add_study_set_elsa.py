@@ -2,7 +2,6 @@ from time import sleep
 from helper_class.adb_helper import ADBHelper
 import helper_class.json_file_helper as json_helper
 import helper_class.paragraph_helper as paragraph_helper
-import argparse
 
 class AutoAddStudySetELSA():
 
@@ -34,7 +33,7 @@ class AutoAddStudySetELSA():
             self.wait_for_loading_screen()
             self.adb_helper.click_at_point(
                 self.plus_button_x, self.plus_button_y)
-        self.adb_helper.navigate_backward()
+        # self.adb_helper.navigate_backward()
         self.adb_helper.click_at_point(self.finish_text_x, self.finish_text_y)
         self.wait_for_loading_screen()
 
